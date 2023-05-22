@@ -1,3 +1,19 @@
+SimWrapper version of Papa Parse
+================================
+
+SimWrapper uses a modified version of the CSV-parsing "Papaparse" library to handle what we consider a bug in Papaparse's handling of quoted string fields.
+
+Papaparse has a nice "dynamic typing" feature which converts numeric and boolean fields into actual numbers and booleans in the javascript objects that it returns. Unfortunately, it will convert fields even if they are surrounded by double-quotes. This is absolutely counterintuitive, because our users (most people generally?) use double-quotes to declare that a field is a string, full-stop. 
+
+This behavior causes big problems when a field contains something like a US ZIP Code, for example. Boston's ZIP code is 02134.  Papaparse returns that as the number 2,134, which is WRonG!
+
+We've also encountered network files where link ID's have leading zeroes, and these also end up getting parsed incorrectly. 
+
+Users know that putting double-quotes around a field in Excel will force Excel to interpret that cell as a string even if its content is numeric.
+
+So, this patched version of PapaParse does the same thing: Even when the library's dynamic typing option is enabled, fields surrounded with double-quotes will be returned as strings, not numbers/booleans.
+
+
 Parse CSV with JavaScript
 ========================================
 
