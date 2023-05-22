@@ -22,8 +22,8 @@ Papaparse includes an option to skip lines beginning with a comment tag, and Sim
 But Papaparse throws these comments away, whereas SimWrapper would like to get some meta information
 about the CSV file using comments. For example, some SimWrapper plugins look for the EPSG coordinate reference system code in comments.
 
-So this modified version of Papaparse builds an called `comments` containing the list of comment lines that is
-returned as part of the regular `{data, meta, errors, comments}` object that Papaparse returns.
+So this modified version of Papaparse builds an array called `comments` containing the list of comment lines that is
+returned as part of the `{data, meta, errors, comments}` object that Papaparse returns.
 
 
 Parse CSV with JavaScript
