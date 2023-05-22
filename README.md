@@ -1,7 +1,9 @@
 SimWrapper version of Papa Parse
 ================================
 
-SimWrapper uses a modified version of the CSV-parsing "Papaparse" library to handle what we consider a bug in Papaparse's handling of quoted string fields.
+SimWrapper uses a modified version of the CSV-parsing "Papaparse" library to handle what we consider a bug in Papaparse's handling of quoted string fields and to enhance comment support.
+
+### 1. Quoted fields
 
 Papaparse has a nice "dynamic typing" feature which converts numeric and boolean fields into actual numbers and booleans in the javascript objects that it returns. Unfortunately, it will convert fields even if they are surrounded by double-quotes. This is absolutely counterintuitive, because our users (most people generally?) use double-quotes to declare that a field is a string, full-stop. 
 
@@ -12,6 +14,16 @@ We've also encountered network files where link ID's have leading zeroes, and th
 Users know that putting double-quotes around a field in Excel will force Excel to interpret that cell as a string even if its content is numeric.
 
 So, this patched version of PapaParse does the same thing: Even when the library's dynamic typing option is enabled, fields surrounded with double-quotes will be returned as strings, not numbers/booleans.
+
+### 2. Comments in CSV files
+
+Papaparse includes an option to skip lines beginning with a comment tag, and SimWrapper uses the `#` hash/number sign to mark lines that are to be skipped. 
+
+But Papaparse throws these comments away, whereas SimWrapper would like to get some meta information
+about the CSV file using comments. For example, some SimWrapper plugins look for the EPSG coordinate reference system code in comments.
+
+So this modified version of Papaparse builds an called `comments` containing the list of comment lines that is
+returned as part of the regular `{data, meta, errors, comments}` object that Papaparse returns.
 
 
 Parse CSV with JavaScript
