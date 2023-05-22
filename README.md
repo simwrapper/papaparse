@@ -1,7 +1,7 @@
 SimWrapper version of Papa Parse
 ================================
 
-SimWrapper uses a modified version of the CSV-parsing "Papaparse" library to handle what we consider a bug in Papaparse's handling of quoted string fields and to enhance comment support.
+SimWrapper uses a modified version of the CSV-parsing "Papaparse" library to address what we consider a bug in Papaparse's handling of quoted string fields and to enhance comment support.
 
 ### 1. Quoted fields
 
