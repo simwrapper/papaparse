@@ -257,7 +257,6 @@ License: MIT
 				return string.slice(1);
 			}
 			return string;
-			}
 		}
 	}
 
